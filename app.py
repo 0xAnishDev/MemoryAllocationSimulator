@@ -23,7 +23,8 @@ tab1, tab2 = st.tabs(["Paging", "Segmentation"])
 
 # ---------------- PAGING TAB ----------------
 with tab1:
-    st.subheader("Paging Simulation (FIFO)")
+    st.subheader("Paging Simulation")
+    algorithm = st.selectbox("Select Page Replacement Algorithm", ["FIFO", "LRU", "Optimal"])
 
     if st.button("Run Paging Simulation"):
 
@@ -33,8 +34,7 @@ with tab1:
 
         pages = [random.randint(1, 10) for _ in range(50)]
 
-        for p in pages:
-            paging.access_page(p)
+        paging.simulate(pages, algorithm)
 
         end_time = time.perf_counter()
         execution_time = (end_time - start_time) * 1000  # milliseconds
