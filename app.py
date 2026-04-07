@@ -64,13 +64,15 @@ with tab1:
 # ---------------- SEGMENTATION TAB ----------------
 # ---------------- SEGMENTATION TAB ----------------
 with tab2:
-    st.subheader("Segmentation Simulation (First Fit)")
+    st.subheader("Segmentation Simulation")
+
+    seg_algorithm = st.selectbox("Select Segmentation Algorithm", ["First Fit", "Best Fit", "Worst Fit", "Next Fit"])
 
     if st.button("Run Segmentation Simulation"):
 
         start_time = time.perf_counter()
 
-        result = simulate_segmentation(total_memory, num_processes, max_process_size)
+        result = simulate_segmentation(total_memory, num_processes, max_process_size, algorithm=seg_algorithm)
 
         end_time = time.perf_counter()
         execution_time = (end_time - start_time) * 1000
